@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.9.6.xsd">
+    <jdbc>
+        <driver>org.h2.Driver</driver>
+        <url>jdbc:h2:~/myStore</url>
+        <user>sa</user>
+        <password></password>
+    </jdbc>
+    <generator>
+        <name>org.jooq.util.DefaultGenerator</name>
+        <database>
+            <name>org.jooq.util.h2.H2Database</name>
+            <includes>.*</includes>
+            <excludes></excludes>
+            <inputSchema>PUBLIC</inputSchema>
+        </database>
+        <generate>
+        	<pojos>true</pojos>
+        	<daos>true</daos>
+        	<validationAnnotations>false</validationAnnotations>
+        </generate>
+        <target>
+            <packageName>com.myStore.Warehouse.model</packageName>
+            <directory>./src/main/java</directory>
+        </target>
+    </generator>
+</configuration>

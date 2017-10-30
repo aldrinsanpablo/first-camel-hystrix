@@ -1,0 +1,59 @@
+group = 'com.myStore'
+version = '0.0.1-SNAPSHOT'
+
+buildscript {
+	ext {
+		springBootVersion = '1.5.8.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+sourceSets {
+   main.java.srcDir "src/main/java"
+   main.resources.srcDir "src/main/resources"
+   test.java.srcDir "src/test/java"
+   test.resources.srcDir "src/test/resources"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	springCloudVersion = 'Dalston.SR4'
+}
+
+dependencies {
+	compile('org.springframework.cloud:spring-cloud-starter-hystrix')
+	compile('org.springframework.boot:spring-boot-starter-jooq')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	
+compile('org.apache.camel:camel-jackson-starter:2.18.0')
+compile('org.apache.camel:camel-spring-boot-starter:2.18.0')
+compile('org.apache.camel:camel-http:2.18.0')
+compile('org.apache.camel:camel-hystrix:2.18.0')
+	
+	compile('org.jooq:jooq-codegen')
+	compile('org.jooq:jooq-meta')
+	runtime('com.h2database:h2')
+	runtime('org.postgresql:postgresql')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
